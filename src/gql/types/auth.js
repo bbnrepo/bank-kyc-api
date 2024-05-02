@@ -41,6 +41,9 @@ export default /* GraphQL */ gql`
 		email: String!
 		userRole: ID!
 	  }
+	input orgInput {
+		org: String!
+	}
 
 	type Mutation {
 		""" It allows users to register """
@@ -67,5 +70,7 @@ export default /* GraphQL */ gql`
 
 		""" It allows to reset the password """
 		resetPasswordConfirm(input : ResetPasswordConfirmInput) : String
+
+		enrollAdminOrg(input: orgInput): String
 	}
 `;

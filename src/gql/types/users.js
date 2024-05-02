@@ -14,6 +14,7 @@ export default /* GraphQL */ gql`
 
   type User {
     _id: ID!
+	org: String
     firstName: String!
     lastName: String!
     email: String
@@ -35,7 +36,10 @@ export default /* GraphQL */ gql`
     mobile: String
     userRole: String
     status: Int
-    profilePic: FileKeysInput
+	org: String
+	affiliations: String
+	customerID: String
+	dob: String
   }
 
 
@@ -64,5 +68,7 @@ export default /* GraphQL */ gql`
   type Mutation {
 		""" It allows users to register """
 		updateUser(_id: ID!,input: UpdateUserInput): User
+
+		createCustomer(input: UserInput): Token
 	}
 `;

@@ -31,6 +31,11 @@ const UsersSchema = new Schema(
 		gender: {
 			type: String,
 		},
+		dob: {
+			type: String,
+			required: false,
+		},
+
 		password: {
 			type: String,
 			required: true,
@@ -53,6 +58,15 @@ const UsersSchema = new Schema(
 			type: String,
 			trim: true,
 		},
+		org: {
+			type: String,
+			required: false,
+		},
+		customerID: {
+			type: String,
+			required: false,
+		},
+		
 		// organization: {
 		// 	type: String,
 		// 	trim: true,

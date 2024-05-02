@@ -6,6 +6,7 @@ import {
 	UserRolesSchema,
 	UsersSchema,
 	OTPValidationSchema,
+	ConcentSchema
 } from './schemas/index.js';
 
 export const models = {
@@ -14,4 +15,5 @@ export const models = {
 	AbilitiesGroup: mongoose.model('abilitiesgroup', AbilityGroupsSchema),
 	UserRoles: mongoose.model('userroles', UserRolesSchema),
 	OTPValidation: mongoose.model('otpValidation', OTPValidationSchema),
+	ConcentRequest: mongoose.model('concentRequest', ConcentSchema)
 };
