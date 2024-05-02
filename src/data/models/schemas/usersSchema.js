@@ -10,66 +10,66 @@ const Schema = mongoose.Schema
  * @classdesc User have below properties.
  */
 const UsersSchema = new Schema(
-  {
-    firstName: {
-      type: String,
-      required: true,
-      trim: true
-    },
-    lastName: {
-      type: String,
-      required: false,
-      trim: true
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      lowercase: true
-    },
-    gender: {
-      type: String
-    },
-    dob: {
-      type: String,
-      required: false
-    },
+	{
+		firstName: {
+			type: String,
+			required: true,
+			trim: true
+		},
+		lastName: {
+			type: String,
+			required: false,
+			trim: true
+		},
+		email: {
+			type: String,
+			required: true,
+			unique: true,
+			trim: true,
+			lowercase: true
+		},
+		gender: {
+			type: String
+		},
+		dob: {
+			type: String,
+			required: false
+		},
 
-    password: {
-      type: String,
-      required: true
-    },
-    resetPasswordToken: {
-      type: String,
-      required: false
-    },
-    userRole: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'userroles',
-      required: true
-    },
-    mobile: {
-      type: String,
-      required: false
+		password: {
+			type: String,
+			required: true
+		},
+		resetPasswordToken: {
+			type: String,
+			required: false
+		},
+		userRole: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'userroles',
+			required: true
+		},
+		mobile: {
+			type: String,
+			required: false
 			// unique: true,
-    },
-    signupMode: {
-      type: String,
-      trim: true
-    },
-    org: {
-      type: String,
-      required: false
-    },
-    customerID: {
-      type: String,
-      required: false
-    },
-    kycConcent: {
-      type: Boolean,
-      default: false
-    },
+		},
+		signupMode: {
+			type: String,
+			trim: true
+		},
+		org: {
+			type: String,
+			required: false
+		},
+		customerID: {
+			type: String,
+			required: false
+		},
+		kycConcent: {
+			type: Boolean,
+			default: false
+		},
 
 		// organization: {
 		// 	type: String,
@@ -137,12 +137,12 @@ const UsersSchema = new Schema(
 		// 	required: true,
 		// 	default: Date.now,
 		// },
-    status: {
-      type: Number,
-      required: true,
-      default: schemaStatus['users']['INACTIVE']
-    }
-  },
+		status: {
+			type: Number,
+			required: true,
+			default: schemaStatus['users']['INACTIVE']
+		}
+	},
 	{ timestamps: true }
 )
 
@@ -150,21 +150,21 @@ const UsersSchema = new Schema(
  * Hash the password of user before save on database
  */
 UsersSchema.pre('save', function (next) {
-  if (!this.isModified('password')) {
-    return next()
-  }
-  bcrypt.genSalt((err, salt) => {
-    if (err) {
-      return next(err)
-    }
-    bcrypt.hash(this.password, salt, (err, hash) => {
-      if (err) {
-        return next(err)
-      }
-      this.password = hash
-      next()
-    })
-  })
+	if (!this.isModified('password')) {
+		return next()
+	}
+	bcrypt.genSalt((err, salt) => {
+		if (err) {
+			return next(err)
+		}
+		bcrypt.hash(this.password, salt, (err, hash) => {
+			if (err) {
+				return next(err)
+			}
+			this.password = hash
+			next()
+		})
+	})
 })
 
 export { UsersSchema }
