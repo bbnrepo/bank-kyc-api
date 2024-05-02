@@ -294,6 +294,7 @@ export default {
 				context.user._id
 			).lean();
 
+
 			let orgMSP;
 			let caURL;
 			let org = currentUser.org;
@@ -344,7 +345,7 @@ export default {
 			gateway.disconnect();
 
 			await context.di.model.ConcentRequest.findOneAndUpdate(
-				{ _id: input._id },
+				{ _id: _id },
 				{ status: input.status }
 			);
 
