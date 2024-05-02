@@ -1,9 +1,6 @@
 'use strict';
 
-const {
-	Gateway,
-	Wallets
-} = require('fabric-network');
+const { Gateway, Wallets } = require('fabric-network');
 const FabricCAServices = require('fabric-ca-client');
 const path = require('path');
 const {
@@ -11,13 +8,8 @@ const {
 	registerAndEnrollUser,
 	enrollAdmin,
 } = require('../utils/CAUtil.js');
-const {
-	buildCCP,
-	buildWallet
-} = require('./AppUtil.js');
-const {
-	response
-} = require('express');
+const { buildCCP, buildWallet } = require('./AppUtil.js');
+const { response } = require('express');
 var ObjectID = require('bson-objectid');
 
 const channelName = 'channelone';
@@ -26,20 +18,22 @@ const mspId = 'MULMUNDRAMSP';
 const walletPath = path.join(__dirname, '../wallet');
 const caHostName = 'ca.mulmundra.mpower.in';
 const appUserId = 'appUser1';
-const {
-	logger
-} = require('./../config/logger')
+const { logger } = require('./../config/logger');
 
-function prettyJSONString(inputString) {
+function prettyJSONString (inputString) {
 	return JSON.stringify(JSON.parse(inputString), null, 2);
 }
 
-exports.evaluateTransaction = async (org, appUserId, channelName,
-	chaincodeName, transactionName, ...args) => {
+exports.evaluateTransaction = async (
+	org,
+	appUserId,
+	channelName,
+	chaincodeName,
+	transactionName,
+	...args
+) => {
 	try {
-		
-		await connectToFabric(org, appUserId, channelName,
-			chaincodeName,)
+		await connectToFabric(org, appUserId, channelName, chaincodeName);
 		logger.info(
 			`\n--> Evaluate Transaction: ${transactionName} for args ${args}`
 		);
@@ -56,13 +50,18 @@ exports.evaluateTransaction = async (org, appUserId, channelName,
 	}
 };
 
-exports.submitTransaction = async (org, appUserId, channelName,
-	chaincodeName,transactionName, ...args) => {
+exports.submitTransaction = async (
+	org,
+	appUserId,
+	channelName,
+	chaincodeName,
+	transactionName,
+	...args
+) => {
 	// Get the contract from the network.network.
 	//const [contract, gateway] = await getContract();
 	try {
-		await connectToFabric(org, appUserId, channelName,
-			chaincodeName,)
+		await connectToFabric(org, appUserId, channelName, chaincodeName);
 		logger.info(
 			`\n--> Submit Transaction: ${transactionName} with args ${args}`
 		);
@@ -76,14 +75,21 @@ exports.submitTransaction = async (org, appUserId, channelName,
 	}
 };
 
-exports.deleteTransaction = async (org, appUserId, channelName,
-	chaincodeName, transactionName, ...args) => {
+exports.deleteTransaction = async (
+	org,
+	appUserId,
+	channelName,
+	chaincodeName,
+	transactionName,
+	...args
+) => {
 	// Get the contract from the network.network.
 	//const [contract, gateway] = await getContract();
 	try {
-		await connectToFabric(org, appUserId, channelName,
-			chaincodeName)
-		logger.info(`\n--> Delete Transaction: ${transactionName} with args ${args}`)
+		await connectToFabric(org, appUserId, channelName, chaincodeName);
+		logger.info(
+			`\n--> Delete Transaction: ${transactionName} with args ${args}`
+		);
 		console.log(
 			`\n--> Submit Transaction: ${transactionName} with args ${args}`
 		);
@@ -143,7 +149,7 @@ exports.getContract = async () => {
 			identity: appUserId,
 			discovery: {
 				enabled: true,
-				asLocalhost: false
+				asLocalhost: false,
 			}, // using asLocalhost as this gateway is using a fabric network deployed locally
 		});
 
@@ -161,8 +167,7 @@ exports.getContract = async () => {
 
 let gateway;
 let contract;
-async function connectToFabric(org, appUserId, channelName,
-	chaincodeName) {
+async function connectToFabric (org, appUserId, channelName, chaincodeName) {
 	try {
 		const ccp = buildCCP(org);
 		const wallet = await buildWallet(Wallets, walletPath);
@@ -174,9 +179,8 @@ async function connectToFabric(org, appUserId, channelName,
 			identity: appUserId,
 			discovery: {
 				enabled: true,
-				asLocalhost: true
-			}
-
+				asLocalhost: true,
+			},
 		});
 
 		const network = await gateway.getNetwork(channelName);
@@ -184,11 +188,10 @@ async function connectToFabric(org, appUserId, channelName,
 
 		// Get the contract from the network.
 		contract = network.getContract(chaincodeName);
-		logger.info('Connected to Fabric Network')
+		logger.info('Connected to Fabric Network');
 		return [contract, gateway];
-
 	} catch (err) {
-		logger.error('Database Error =>', err)
+		logger.error('Database Error =>', err);
 	}
 }
 
