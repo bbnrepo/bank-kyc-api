@@ -1,0 +1,41 @@
+spectaql:
+  logoFile: ./public/bbn.png
+  faviconFile: ./public/bbn.png
+  displayAllServers: true
+
+introspection:
+  queryNameStrategy: capitalizeFirst
+  fieldExpansionDepth: 2
+  url: http://localhost:3000/graphql
+
+  spectaqlDirective:
+    enable: true
+
+extensions:
+  graphqlScalarExamples: true
+
+info:
+  title: GraphQL API Reference
+  description: Welcome to the party!
+  termsOfService: https://www.example.com/terms
+  contact:
+    name: API Support
+    url: http://www.example.com/support
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  x-introItems:
+    - title: Polyversity Backend
+      description: Documentation For Polyversity Backend
+
+servers:
+  - url: https://localhost:3000/graphql
+    description: local
+  - url: https://example.com/graphql
+    description: Production
+    production: true
+    headers:
+      - name: Authorization
+        example: Bearer <YOUR_TOKEN_HERE>
+        comment: Your foo from bar
