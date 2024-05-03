@@ -188,6 +188,7 @@ export default {
 			let orgMSP;
 			let caURL;
 
+			
 			switch (org) {
 				case 'SBI':
 					(orgMSP = 'SBIMSP'), (caURL = 'ca.sbi.example.com');
@@ -205,6 +206,17 @@ export default {
 			const caClient = buildCAClient(FabricCAServices, ccp, caURL);
 
 			const wallet = await buildWallet(Wallets, walletPath);
+
+			console.log('org', org,email,
+			affiliations,
+			firstName,
+			lastName,
+			dob,
+			customerID,
+			mobile,
+			ccp, caClient, wallet, orgMSP, caURL);
+
+		
 			await registerAndEnrollUser(
 				caClient,
 				wallet,

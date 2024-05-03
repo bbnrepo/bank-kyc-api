@@ -1,0 +1,49 @@
+{
+    "name": "kyc-network-RBI",
+    "version": "1.0.0",
+    "client": {
+        "organization": "RBI",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "RBI": {
+            "mspid": "RBIMSP",
+            "peers": [
+                "peer0.rbi.example.com"
+            ],
+            "certificateAuthorities": [
+                "ca.rbi.example.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.rbi.example.com": {
+            "url": "grpcs://localhost:11051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICHjCCAcWgAwIBAgIUDh4l0h9AWpwRHoxQLGPztdvWGjEwCgYIKoZIzj0EAwIw\nbDELMAkGA1UEBhMCVUsxEjAQBgNVBAgTCUhhbXBzaGlyZTEQMA4GA1UEBxMHSHVy\nc2xleTEZMBcGA1UEChMQb3JnMi5leGFtcGxlLmNvbTEcMBoGA1UEAxMTY2Eub3Jn\nMi5leGFtcGxlLmNvbTAeFw0yNDA1MDIxNjA1MDBaFw0zOTA0MjkxNjA1MDBaMGwx\nCzAJBgNVBAYTAlVLMRIwEAYDVQQIEwlIYW1wc2hpcmUxEDAOBgNVBAcTB0h1cnNs\nZXkxGTAXBgNVBAoTEG9yZzIuZXhhbXBsZS5jb20xHDAaBgNVBAMTE2NhLm9yZzIu\nZXhhbXBsZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARqwBmkhbtRxLjX\nZIogHSNSHEFAy+nXz/v78S/YplKflgW7XjpDp8T8xhTMCyqLBMiJlqLlgVGD0zNF\nTlX1OhSho0UwQzAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBATAd\nBgNVHQ4EFgQULlnytDwS4sJz/16lWTfaEzfHuCEwCgYIKoZIzj0EAwIDRwAwRAIg\nUBcOPWMBcFCVRvL6GHOtOXlFODUk7ruRjgh5yzwgpCwCIBqovaSmiIfl1jWjXaGW\n6ENIAHqesDk35FtEZqBvZdDq\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.rbi.example.com",
+                "hostnameOverride": "peer0.rbi.example.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.rbi.example.com": {
+            "url": "https://localhost:11054",
+            "caName": "ca-rbi",
+            "tlsCACerts": {
+                "pem": ["-----BEGIN CERTIFICATE-----\nMIICHjCCAcWgAwIBAgIUDh4l0h9AWpwRHoxQLGPztdvWGjEwCgYIKoZIzj0EAwIw\nbDELMAkGA1UEBhMCVUsxEjAQBgNVBAgTCUhhbXBzaGlyZTEQMA4GA1UEBxMHSHVy\nc2xleTEZMBcGA1UEChMQb3JnMi5leGFtcGxlLmNvbTEcMBoGA1UEAxMTY2Eub3Jn\nMi5leGFtcGxlLmNvbTAeFw0yNDA1MDIxNjA1MDBaFw0zOTA0MjkxNjA1MDBaMGwx\nCzAJBgNVBAYTAlVLMRIwEAYDVQQIEwlIYW1wc2hpcmUxEDAOBgNVBAcTB0h1cnNs\nZXkxGTAXBgNVBAoTEG9yZzIuZXhhbXBsZS5jb20xHDAaBgNVBAMTE2NhLm9yZzIu\nZXhhbXBsZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARqwBmkhbtRxLjX\nZIogHSNSHEFAy+nXz/v78S/YplKflgW7XjpDp8T8xhTMCyqLBMiJlqLlgVGD0zNF\nTlX1OhSho0UwQzAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBATAd\nBgNVHQ4EFgQULlnytDwS4sJz/16lWTfaEzfHuCEwCgYIKoZIzj0EAwIDRwAwRAIg\nUBcOPWMBcFCVRvL6GHOtOXlFODUk7ruRjgh5yzwgpCwCIBqovaSmiIfl1jWjXaGW\n6ENIAHqesDk35FtEZqBvZdDq\n-----END CERTIFICATE-----\n"]
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

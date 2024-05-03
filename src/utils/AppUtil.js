@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 
 
 export const buildCCP = (org) => {
-	console.log(org);
+	console.log("line 17",org);
 	let ccpPath;
 	switch (org) {
 		case 'SBI':
@@ -25,33 +25,25 @@ export const buildCCP = (org) => {
 				'connection-sbi.json'
 			);
 			break;
-		case 'GTB':
+		case 'ICICI':
 			ccpPath = path.resolve(
 				__dirname,
 				'..',
-				'..',
-				'kyc_application',
-				'kyc-network',
-				'organizations',
-				'peerOrganizations',
-				'gtb.example.com',
-				'connection-gtb.json'
+				'utils',
+				'connection-icici.json'
 			);
 			break;
-		case 'CBN':
+		case 'RBI':
 			ccpPath = path.resolve(
 				__dirname,
 				'..',
-				'..',
-				'kyc_application',
-				'kyc-network',
-				'organizations',
-				'peerOrganizations',
-				'cbn.example.com',
-				'connection-cbn.json'
+				'utils',
+				'connection-rbi.json'
 			);
 			break;
 	}
+
+	console.log("line 42",ccpPath);
 	const fileExists = fs.existsSync(ccpPath);
 	if (!fileExists) {
 		throw new Error(`no such file or directory: ${ccpPath}`);
